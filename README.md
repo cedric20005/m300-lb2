@@ -17,7 +17,11 @@ Die Host-only Adapter habe ich jeweils mit einer statischen IP gesetzt. Der Host
 - worker1-node - 192.168.11.12
 - worker2-node - 192.168.11.13
 - nfs-server - 192.168.11.100
+  
 Der NAT Adapter ist für die Verbindung ins Internet, dabei wurde die VM auf DHCP gestellt.
 
-  
+Falls während der Installation der Adapter nicht auf *automatisches starten* gestellt wurde, ist **onboot** automatisch auf **no**. Die Option kann jedoch unter */etc/sysconfig/network-scripts/ifconfig8* auf yes gesetzt werden.
 ## Probleme - Troubleshooting
+
+Ein grosses und nerven aufbringendes PRoblem war der Share für den mySql Service. In der Dokumentation wird die Einrichtung des mySql Shares nicht behandelt, folglich kommt beim Ausführen des Services die Fehlermeldung, dass der Storage nicht gefunden wird. Als Lösung muss man einen Share für mySql erstellen nach der folgenden Anleitung 
+[Share erstellen](https://gitlab.com/mbe99/kubernetes/-/blob/master/md/deployment/nginx.md). Wichtig dabei ist, dass der Share **mySql** heisst, da auf diesen Namen im File Deployment File **mysql.yaml** referenziert wird. 
